@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import ProjectStore from "../Stores/ProjectStore";
+import ProjectTile from "../components/ProjectTile.react";
 
 const styles = theme => ({
   root: {
@@ -20,13 +22,24 @@ const styles = theme => ({
 });
 
 class Home extends Component {
+  displayProjects = () => {
+    return ProjectStore.projects.map(project => {
+      return <ProjectTile project={project} />;
+    });
+  };
+
   render() {
     let { classes } = this.props;
     return (
       <div className={classes.root}>
-        <main>
-          <div className={classes.toolbar} />
-          Hello
+        <main
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(385px, 1fr))",
+            gridGap: "1rem"
+          }}
+        >
+          {this.displayProjects()}
         </main>
       </div>
     );
