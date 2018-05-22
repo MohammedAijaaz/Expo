@@ -5,16 +5,6 @@ import ProjectStore from "../Stores/ProjectStore";
 import ProjectTile from "../components/ProjectTile.react";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    // height: 430,
-    zIndex: 1,
-    overflow: "hidden",
-    position: "relative",
-    display: "flex",
-    width: "100%",
-    margin: "3em 0em 0 0em"
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3
@@ -35,7 +25,7 @@ class Home extends Component {
         <main
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(385px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(315px, 1fr))",
             gridGap: "1rem"
           }}
         >

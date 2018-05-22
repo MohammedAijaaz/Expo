@@ -10,7 +10,7 @@ class ProjectStore {
         new Project(
           "Interactive Learning in Mixed Reality",
           [
-            "https://www.windowscentral.com/sites/wpcentral.com/files/topic_images/2016/hololens-topic.png"
+            "https://roadtovrlive-5ea0.kxcdn.com/wp-content/uploads/2015/01/microsoft-hololens-augmented-reality-headset.jpg"
           ],
           "Cupidatat proident magna deserunt ad duis enim incididunt ipsum esse. Et consectetur ad id incididunt qui laboris. Aute ex ad fugiat duis. Enim culpa cupidatat eiusmod cillum ad ut proident. Minim veniam et magna pariatur occaecat non excepteur.",
           "April 14, 2018"

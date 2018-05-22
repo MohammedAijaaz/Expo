@@ -25,135 +25,146 @@ import About from "../views/About.react";
 import classNames from "classnames";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Avatar from "@material-ui/core/Avatar";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    // height: 430,
     zIndex: 1,
     overflow: "hidden",
     position: "relative",
-    display: "flex"
+    display: "flex",
+    width: "100%"
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
+    position: "absolute",
     marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36
-  },
-  hide: {
-    display: "none"
-  },
-  drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    width: theme.spacing.unit * 7,
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing.unit * 9
+    [theme.breakpoints.up("md")]: {
+      width: `calc(100% - ${drawerWidth}px)`
     }
   },
-  toolbar: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar
+  navIconHide: {
+    [theme.breakpoints.up("md")]: {
+      display: "none"
+    }
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+    width: drawerWidth,
+    [theme.breakpoints.up("md")]: {
+      position: "relative"
+    }
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
+  },
+  bigAvatar: {
+    width: 60,
+    height: 60
   }
+  // menuItem: {
+  //   "&:focus": {
+  //     backgroundColor: theme.palette.secondary.main,
+  //     "& $primary, & $icon": {
+  //       color: theme.palette.common.white
+  //     }
+  //   }
+  // }
 });
 
 @observer
 class Navigator extends Component {
   @observable open = false;
+  @observable selectedIndex = 0;
+  // @observable anchorEl = null;
 
   componentWillMount() {
     this.openProjects();
   }
 
-  toggleDrawer = open => () => {
-    this.open = open;
+  handleDrawerToggle = () => {
+    this.open = !this.open;
   };
 
   openProjects = () => {
-    this.toggleDrawer(false);
+    if (this.open) this.handleDrawerToggle();
+    this.selectedIndex = 0;
     this.props.history.push("/Home");
   };
 
   openAbout = () => {
-    this.toggleDrawer(false);
+    if (this.open) this.handleDrawerToggle();
+    this.selectedIndex = 1;
     this.props.history.push("/About");
   };
 
   render() {
     const { classes, theme } = this.props;
     const drawer = (
-      <div className={classes.list}>
-        <List>
-          <ListItem button onClick={this.openProjects}>
+      <div>
+        <MenuList>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              padding: "16px"
+            }}
+          >
+            <Avatar
+              aria-label="Mohammed Aijaaz"
+              src={require("../static/images/dp.jpg")}
+              className={classes.bigAvatar}
+              style={{ marginBottom: "1em" }}
+            />
+            <Typography variant="title" style={{ marginTop: "0.5em" }}>
+              Mohammed Aijaaz
+            </Typography>
+            <Typography variant="subheading" style={{ marginTop: "0.5em" }}>
+              mdaijaaz3@gmail.com
+            </Typography>
+          </div>
+          <Divider />
+          <MenuItem
+            button
+            onClick={this.openProjects}
+            // className={classes.menuItem}
+            selected={this.selectedIndex === 0}
+          >
             <ListItemIcon>
               <FolderSpecial />
             </ListItemIcon>
             <ListItemText>Projects</ListItemText>
-          </ListItem>
-          <ListItem button onClick={this.openAbout}>
+          </MenuItem>
+          <MenuItem
+            button
+            onClick={this.openAbout}
+            // className={classes.menuItem}
+            selected={this.selectedIndex === 1}
+          >
             <ListItemIcon>
               <AccountCircle />
             </ListItemIcon>
             <ListItemText>About</ListItemText>
-          </ListItem>
-        </List>
+          </MenuItem>
+        </MenuList>
       </div>
     );
 
     return (
       <div className={classes.root}>
-        <AppBar
-          position="absolute"
-          className={classNames(
-            classes.appBar,
-            this.open && classes.appBarShift
-          )}
-        >
-          <Toolbar disableGutters={!this.open}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
             <IconButton
               color="inherit"
               aria-label="Menu"
-              onClick={this.toggleDrawer(true)}
-              className={classNames(
-                classes.menuButton,
-                this.open && classes.hide
-              )}
+              onClick={this.handleDrawerToggle}
+              className={classes.navIconHide}
             >
               <MenuIcon />
             </IconButton>
@@ -162,29 +173,38 @@ class Navigator extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(
-              classes.drawerPaper,
-              !this.open && classes.drawerPaperClose
-            )
-          }}
-          open={this.open}
+        <Hidden mdUp>
+          <Drawer
+            variant="temporary"
+            anchor={theme.direction === "rtl" ? "right" : "left"}
+            open={this.open}
+            onClose={this.handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            ModalProps={{
+              keepMounted: true // Better open performance on mobile.
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <Hidden smDown implementation="css">
+          <Drawer
+            variant="permanent"
+            open
+            classes={{
+              paper: classes.drawerPaper
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <main
+          className={classes.content}
+          style={{ height: "93vh", overflowY: "scroll" }}
         >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.toggleDrawer(false)}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>{drawer}</List>
-        </Drawer>
-        <main className={classes.content}>
+          <div className={classes.toolbar} />
           <Switch>
             <Route path="/Home" component={Home} />
             <Route path="/About" component={About} />
