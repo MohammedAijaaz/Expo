@@ -1,3 +1,3 @@
 # Hola!
 
-## Check out my expo at (aijaaz.surge.sh)[aijaaz.surge.sh]
+## Check out my expo at [aijaaz.surge.sh](aijaaz.surge.sh)
