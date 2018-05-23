@@ -74,7 +74,9 @@ class ProjectTile extends Component {
             <Img src={project.images[0]} style={{ maxWidth: "100%" }} />
           </CardMedia>
           <CardContent>
-            <Typography component="p">{project.description}</Typography>
+            <Typography component="p" align="justify">
+              {project.description}
+            </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
             <IconButton aria-label="Add to favorites">
