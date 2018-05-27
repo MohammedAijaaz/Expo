@@ -137,7 +137,7 @@ class About extends Component {
               <Tooltip title="C++ Programming Language"> */}
               <Img
                 src="http://www.alejandrosegovia.net/wp-content/uploads/2016/12/cpp.png"
-                style={{ maxWidth: "60%" }}
+                style={{ maxWidth: "50%" }}
               />
               {/* </Tooltip>
               <Tooltip title="C# Programming Language"> */}

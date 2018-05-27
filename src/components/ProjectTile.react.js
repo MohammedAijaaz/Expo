@@ -53,7 +53,7 @@ class ProjectTile extends Component {
 
     return (
       <div>
-        <Card className={classes.card} raised={true}>
+        <Card className={classes.card} raised={true} style={{ height: "100%" }}>
           <CardHeader
             avatar={
               <Avatar
@@ -62,20 +62,26 @@ class ProjectTile extends Component {
                 className={classes.avatar}
               />
             }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
+            // action={
+            //   <IconButton>
+            //     <MoreVertIcon />
+            //   </IconButton>
+            // }
             title={project.name}
             subheader={project.date}
           />
-          <CardMedia className={classes.media} title={project.name}>
+          <CardMedia
+            className={classes.media}
+            title={project.name}
+            style={{ height: "15em", overflow: "hidden" }}
+          >
             <Img src={project.images[0]} style={{ maxWidth: "100%" }} />
           </CardMedia>
-          <CardContent>
+          <CardContent style={{ overflowY: "hidden" }}>
             <Typography component="p" align="justify">
-              {project.description}
+              {project.description.length >= 100
+                ? project.description.substr(0, 97) + "..."
+                : project.description}
             </Typography>
           </CardContent>
           <CardActions className={classes.actions} disableActionSpacing>
