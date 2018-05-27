@@ -25,16 +25,21 @@ import About from "../views/About.react";
 import classNames from "classnames";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import PaperIcon from "@material-ui/icons/Note";
+import ContactsIcon from "@material-ui/icons/Contacts";
 import Avatar from "@material-ui/core/Avatar";
 import MenuList from "@material-ui/core/MenuList";
 import MenuItem from "@material-ui/core/MenuItem";
+import Papers from "../views/Papers.react";
+import Contact from "../views/Contact.react";
+import SvgIcon from "@material-ui/core/SvgIcon";
 
 const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    zIndex: 1,
+    // zIndex: 1,
     overflow: "hidden",
     position: "relative",
     display: "flex",
@@ -85,7 +90,7 @@ class Navigator extends Component {
   // @observable anchorEl = null;
 
   componentWillMount() {
-    this.openProjects();
+    if (this.props.history.location.pathname === "/") this.openProjects();
   }
 
   handleDrawerToggle = () => {
@@ -98,11 +103,65 @@ class Navigator extends Component {
     this.props.history.push("/Home");
   };
 
-  openAbout = () => {
+  openPapers = () => {
     if (this.open) this.handleDrawerToggle();
     this.selectedIndex = 1;
+    this.props.history.push("/Papers");
+  };
+
+  openAbout = () => {
+    if (this.open) this.handleDrawerToggle();
+    this.selectedIndex = 2;
     this.props.history.push("/About");
   };
+
+  openContact = () => {
+    if (this.open) this.handleDrawerToggle();
+    this.selectedIndex = 3;
+    this.props.history.push("/Contact");
+  };
+
+  componentDidMount() {
+    console.log(this.props.history.location.pathname);
+    switch (this.props.history.location.pathname) {
+      case "/Home":
+        console.log("yoo");
+        this.selectedIndex = 0;
+        break;
+      case "/Papers":
+        this.selectedIndex = 1;
+        break;
+      case "/About":
+        this.selectedIndex = 2;
+        break;
+      case "/Contact":
+        this.selectedIndex = 3;
+        break;
+      default:
+        this.selectedIndex = 0;
+    }
+  }
+
+  componentDidUpdate(x, y) {
+    if (this.props.history.location.pathname === "/") this.openProjects();
+    switch (this.props.history.location.pathname) {
+      case "/Home":
+        console.log("yoo");
+        this.selectedIndex = 0;
+        break;
+      case "/Papers":
+        this.selectedIndex = 1;
+        break;
+      case "/About":
+        this.selectedIndex = 2;
+        break;
+      case "/Contact":
+        this.selectedIndex = 3;
+        break;
+      default:
+        this.selectedIndex = 0;
+    }
+  }
 
   render() {
     const { classes, theme } = this.props;
@@ -143,14 +202,36 @@ class Navigator extends Component {
           </MenuItem>
           <MenuItem
             button
-            onClick={this.openAbout}
+            onClick={this.openPapers}
             // className={classes.menuItem}
             selected={this.selectedIndex === 1}
+          >
+            <ListItemIcon>
+              <PaperIcon />
+            </ListItemIcon>
+            <ListItemText>Papers</ListItemText>
+          </MenuItem>
+          <MenuItem
+            button
+            onClick={this.openAbout}
+            // className={classes.menuItem}
+            selected={this.selectedIndex === 2}
           >
             <ListItemIcon>
               <AccountCircle />
             </ListItemIcon>
             <ListItemText>About</ListItemText>
+          </MenuItem>
+          <MenuItem
+            button
+            onClick={this.openContact}
+            // className={classes.menuItem}
+            selected={this.selectedIndex === 3}
+          >
+            <ListItemIcon>
+              <ContactsIcon />
+            </ListItemIcon>
+            <ListItemText>Contact</ListItemText>
           </MenuItem>
         </MenuList>
       </div>
@@ -159,7 +240,7 @@ class Navigator extends Component {
     return (
       <div className={classes.root}>
         <AppBar className={classes.appBar}>
-          <Toolbar>
+          <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
             <IconButton
               color="inherit"
               aria-label="Menu"
@@ -171,6 +252,18 @@ class Navigator extends Component {
             <Typography variant="title" color="inherit" noWrap>
               Mohammed Aijaaz - Expo
             </Typography>
+            <div>
+              <IconButton
+                aria-label="GitHub"
+                onClick={() => {
+                  window.location = "https://github.com/MohammedAijaaz";
+                }}
+              >
+                <SvgIcon style={{ fill: "white" }}>
+                  <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2 0 1.9 1.2 1.9 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8 0 3.2.9.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1 .9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3" />{" "}
+                </SvgIcon>
+              </IconButton>
+            </div>
           </Toolbar>
         </AppBar>
         <Hidden mdUp>
@@ -207,7 +300,9 @@ class Navigator extends Component {
           <div className={classes.toolbar} />
           <Switch>
             <Route path="/Home" component={Home} />
+            <Route path="/Papers" component={Papers} />
             <Route path="/About" component={About} />
+            <Route path="/Contact" component={Contact} />
             <Route component={NotFound} />
           </Switch>
         </main>

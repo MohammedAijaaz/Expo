@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import ProjectStore from "../Stores/ProjectStore";
 import ProjectTile from "../components/ProjectTile.react";
+import Typography from "@material-ui/core/Typography";
+// import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+// import "./mystyles.css";
 
 const styles = theme => ({
   content: {
@@ -22,6 +25,7 @@ class Home extends Component {
     let { classes } = this.props;
     return (
       <div className={classes.root}>
+        <Typography variant="headline">Projects</Typography>
         <main
           style={{
             display: "grid",
