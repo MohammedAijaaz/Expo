@@ -69,7 +69,7 @@ class ProjectStore {
       new Project(
         "CBIT Carpediem Android App",
         [
-          "https://lh3.googleusercontent.com/aAFiA2-5khunKmsSv-STbOMeG366sMC0iDK8HzKITvsgQj5BMl7M0IghHjhPKmlNQo4=w1920-h961-rw"
+          "https://firebasestorage.googleapis.com/v0/b/blog-caf8e.appspot.com/o/Screenshot%20from%202018-05-27%2015-48-15.png?alt=media&token=99aeec15-1fab-4df3-ae1c-638178586a00"
         ],
         "The app has event registration, event details like the location of the event within the campus is shown on a map, timings, cost etc.",
         "January 15, 2016"
