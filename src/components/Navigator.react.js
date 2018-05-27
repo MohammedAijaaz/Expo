@@ -33,6 +33,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Papers from "../views/Papers.react";
 import Contact from "../views/Contact.react";
 import SvgIcon from "@material-ui/core/SvgIcon";
+import Social from "./social.react";
+import "./compstyles.css";
 
 const drawerWidth = 300;
 
@@ -172,7 +174,11 @@ class Navigator extends Component {
             style={{
               display: "flex",
               flexDirection: "column",
-              padding: "16px"
+              padding: "16px",
+              backgroundImage:
+                "url(https://wallpapersite.com/images/pages/pic_w/10125.jpg)",
+              backgroundSize: "cover",
+              marginTop: "-8px"
             }}
           >
             <Avatar
@@ -181,10 +187,16 @@ class Navigator extends Component {
               className={classes.bigAvatar}
               style={{ marginBottom: "1em" }}
             />
-            <Typography variant="title" style={{ marginTop: "0.5em" }}>
+            <Typography
+              variant="title"
+              style={{ marginTop: "0.5em", color: "#fff" }}
+            >
               Mohammed Aijaaz
             </Typography>
-            <Typography variant="subheading" style={{ marginTop: "0.5em" }}>
+            <Typography
+              variant="subheading"
+              style={{ marginTop: "0.5em", color: "#fff" }}
+            >
               mdaijaaz3@gmail.com
             </Typography>
           </div>
@@ -196,7 +208,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 0}
           >
             <ListItemIcon>
-              <FolderSpecial />
+              <FolderSpecial style={{ fill: "black" }} />
             </ListItemIcon>
             <ListItemText>Projects</ListItemText>
           </MenuItem>
@@ -207,7 +219,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 1}
           >
             <ListItemIcon>
-              <PaperIcon />
+              <PaperIcon style={{ fill: "black" }} />
             </ListItemIcon>
             <ListItemText>Papers</ListItemText>
           </MenuItem>
@@ -218,7 +230,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 2}
           >
             <ListItemIcon>
-              <AccountCircle />
+              <AccountCircle style={{ fill: "black" }} />
             </ListItemIcon>
             <ListItemText>About</ListItemText>
           </MenuItem>
@@ -229,7 +241,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 3}
           >
             <ListItemIcon>
-              <ContactsIcon />
+              <ContactsIcon style={{ fill: "black" }} />
             </ListItemIcon>
             <ListItemText>Contact</ListItemText>
           </MenuItem>
@@ -256,7 +268,7 @@ class Navigator extends Component {
               <IconButton
                 aria-label="GitHub"
                 onClick={() => {
-                  window.location = "https://github.com/MohammedAijaaz";
+                  window.open("https://github.com/MohammedAijaaz", "_blank");
                 }}
               >
                 <SvgIcon style={{ fill: "white" }}>
@@ -297,6 +309,13 @@ class Navigator extends Component {
           className={classes.content}
           style={{ height: "93vh", overflowY: "scroll" }}
         >
+          <div
+            id="bgi"
+            style={{
+              display:
+                this.props.location.pathname !== "/Contact" ? "none" : "block"
+            }}
+          />
           <div className={classes.toolbar} />
           <Switch>
             <Route path="/Home" component={Home} />

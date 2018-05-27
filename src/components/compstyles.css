@@ -1,0 +1,22 @@
+#bgi {
+  /* background-image: url("../static/images/bg.jpg"); */
+  background-image: url("https://cdn.arstechnica.net/wp-content/uploads/2017/09/image_large_2x.jpg");
+  background-size: cover;
+  display: block;
+  /* filter: blur(5px);
+  -webkit-filter: blur(5px); */
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1;
+}
+
+#bgc {
+  position: relative;
+  z-index: 2;
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
