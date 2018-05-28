@@ -5,26 +5,20 @@ import { observer } from "mobx-react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import FolderSpecial from "@material-ui/icons/FolderSpecial";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { withStyles } from "@material-ui/core/styles";
 import Hidden from "@material-ui/core/Hidden";
-import Router, { Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "../views/Home.react";
 import NotFound from "../views/NotFound.react";
 import About from "../views/About.react";
-import classNames from "classnames";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PaperIcon from "@material-ui/icons/Note";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import Avatar from "@material-ui/core/Avatar";
@@ -33,7 +27,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Papers from "../views/Papers.react";
 import Contact from "../views/Contact.react";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import Social from "./social.react";
 import "./compstyles.css";
 
 const drawerWidth = 300;
@@ -124,10 +117,10 @@ class Navigator extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.history.location.pathname);
+    // console.log(this.props.history.location.pathname);
     switch (this.props.history.location.pathname) {
       case "/Home":
-        console.log("yoo");
+        // console.log("yoo");
         this.selectedIndex = 0;
         break;
       case "/Papers":
@@ -148,7 +141,7 @@ class Navigator extends Component {
     if (this.props.history.location.pathname === "/") this.openProjects();
     switch (this.props.history.location.pathname) {
       case "/Home":
-        console.log("yoo");
+        // console.log("yoo");
         this.selectedIndex = 0;
         break;
       case "/Papers":
@@ -208,7 +201,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 0}
           >
             <ListItemIcon>
-              <FolderSpecial style={{ fill: "black" }} />
+              <FolderSpecial style={{ fill: "#3f50b5" }} />
             </ListItemIcon>
             <ListItemText>Projects</ListItemText>
           </MenuItem>
@@ -219,7 +212,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 1}
           >
             <ListItemIcon>
-              <PaperIcon style={{ fill: "black" }} />
+              <PaperIcon style={{ fill: "rgb(15, 255, 8)" }} />
             </ListItemIcon>
             <ListItemText>Papers</ListItemText>
           </MenuItem>
@@ -230,7 +223,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 2}
           >
             <ListItemIcon>
-              <AccountCircle style={{ fill: "black" }} />
+              <AccountCircle style={{ fill: "#00b0ff" }} />
             </ListItemIcon>
             <ListItemText>About</ListItemText>
           </MenuItem>
@@ -241,7 +234,7 @@ class Navigator extends Component {
             selected={this.selectedIndex === 3}
           >
             <ListItemIcon>
-              <ContactsIcon style={{ fill: "black" }} />
+              <ContactsIcon style={{ fill: "#ff0003" }} />
             </ListItemIcon>
             <ListItemText>Contact</ListItemText>
           </MenuItem>

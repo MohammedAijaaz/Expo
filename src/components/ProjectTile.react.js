@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import Img from "react-image";
@@ -13,20 +12,16 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Code from "@material-ui/icons/Code";
 import OpenIcon from "@material-ui/icons/OpenWith";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import withMobileDialog from "@material-ui/core/withMobileDialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -81,6 +76,7 @@ class ProjectTile extends Component {
             <Img
               src="https://cdn.iconscout.com/public/images/icon/free/png-512/c-sharp-logo-344be1179ff0b537-512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -89,6 +85,7 @@ class ProjectTile extends Component {
             <Img
               src="https://cdn.iconscout.com/public/images/icon/free/png-512/unity-logo-334cbb9e5012d791-512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -97,6 +94,7 @@ class ProjectTile extends Component {
             <Img
               src="http://icons.iconarchive.com/icons/xenatt/the-circle/512/App-Blender-icon.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -105,6 +103,7 @@ class ProjectTile extends Component {
             <Img
               src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -113,6 +112,7 @@ class ProjectTile extends Component {
             <Img
               src="https://www.w3.org/html/logo/downloads/HTML5_Logo_512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -121,6 +121,7 @@ class ProjectTile extends Component {
             <Img
               src="https://www.abouthack.com/wp-content/uploads/2014/07/css3_logo.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -129,6 +130,7 @@ class ProjectTile extends Component {
             <Img
               src="https://coderdojo.com/wp-content/uploads/2016/08/Unofficial_JavaScript_logo_2.svg.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -137,6 +139,7 @@ class ProjectTile extends Component {
             <Img
               src="https://cdn.iconscout.com/public/images/icon/free/png-512/nodejs-logo-36559ec903b263f5-512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -145,6 +148,7 @@ class ProjectTile extends Component {
             <Img
               src="https://www.shareicon.net/data/512x512/2016/07/08/117548_google_512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -153,6 +157,7 @@ class ProjectTile extends Component {
             <Img
               src="https://images.vexels.com/media/users/3/139556/isolated/preview/1718a076e29822051df8bcf8b5ce1124-android-logo-by-vexels.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -161,6 +166,7 @@ class ProjectTile extends Component {
             <Img
               src="https://d1q6f0aelx0por.cloudfront.net/product-logos/191bf3e6-f5e5-4430-abb9-2294aa3bb728-java-logo-512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -169,6 +175,7 @@ class ProjectTile extends Component {
             <Img
               src="https://www.seeklogo.net/wp-content/uploads/2017/05/mysql-logo.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -177,6 +184,7 @@ class ProjectTile extends Component {
             <Img
               src="https://www.icoldo.com/wordpress/wp-content/uploads/2015/03/php.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -185,6 +193,7 @@ class ProjectTile extends Component {
             <Img
               src="https://cdn.iconscout.com/public/images/icon/free/png-512/bootstrap-logo-brand-development-tools-3af54ac4f4700735-512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -193,6 +202,7 @@ class ProjectTile extends Component {
             <Img
               src="https://cdn.iconscout.com/public/images/icon/free/png-512/python-logo-31578242a9b4f4ae-512x512.png"
               style={{ maxWidth: "10%", marginLeft: "1em" }}
+              key={i}
             />
           );
           break;
@@ -205,7 +215,7 @@ class ProjectTile extends Component {
         //   );
         //   break;
         default:
-          null;
+          break;
       }
     }
     return retval;
@@ -237,6 +247,7 @@ class ProjectTile extends Component {
             className={classes.media}
             title={project.name}
             style={{ height: "15em", overflow: "hidden" }}
+            src=" "
           >
             <Img src={project.images[0]} style={{ maxWidth: "100%" }} />
           </CardMedia>
