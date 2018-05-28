@@ -5,6 +5,8 @@ import classnames from "classnames";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import Img from "react-image";
+import Slide from "@material-ui/core/Slide";
+import CloseIcon from "@material-ui/icons/Close";
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -20,6 +22,14 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import Code from "@material-ui/icons/Code";
+import OpenIcon from "@material-ui/icons/OpenWith";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import withMobileDialog from "@material-ui/core/withMobileDialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+
 const styles = theme => ({
   card: {
     //   maxWidth: 400,
@@ -28,28 +38,181 @@ const styles = theme => ({
   actions: {
     display: "flex"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
+
+  open: {
     marginLeft: "auto"
   },
-  expandOpen: {
-    transform: "rotate(180deg)"
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3
+  },
+  appBar: {
+    position: "relative"
+  },
+  flex: {
+    flex: 1
   }
 });
 
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
 @observer
 class ProjectTile extends Component {
-  @observable expanded = false;
+  @observable open = false;
 
-  handleExpandClick = () => {
-    this.expanded = !this.expanded;
+  handleClickOpen = () => {
+    this.open = true;
+  };
+
+  handleClose = () => {
+    this.open = false;
+  };
+
+  displayTech = () => {
+    let { project } = this.props;
+    let languages = project.languages;
+    let retval = [];
+    for (let i = 0; i < languages.length; i++) {
+      switch (languages[i]) {
+        case "C#":
+          retval.push(
+            <Img
+              src="https://cdn.iconscout.com/public/images/icon/free/png-512/c-sharp-logo-344be1179ff0b537-512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Unity":
+          retval.push(
+            <Img
+              src="https://cdn.iconscout.com/public/images/icon/free/png-512/unity-logo-334cbb9e5012d791-512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Blender":
+          retval.push(
+            <Img
+              src="http://icons.iconarchive.com/icons/xenatt/the-circle/512/App-Blender-icon.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "React":
+          retval.push(
+            <Img
+              src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/react-512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "HTML":
+          retval.push(
+            <Img
+              src="https://www.w3.org/html/logo/downloads/HTML5_Logo_512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "CSS":
+          retval.push(
+            <Img
+              src="https://www.abouthack.com/wp-content/uploads/2014/07/css3_logo.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "JS":
+          retval.push(
+            <Img
+              src="https://coderdojo.com/wp-content/uploads/2016/08/Unofficial_JavaScript_logo_2.svg.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "NodeJs":
+          retval.push(
+            <Img
+              src="https://cdn.iconscout.com/public/images/icon/free/png-512/nodejs-logo-36559ec903b263f5-512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Firebase":
+          retval.push(
+            <Img
+              src="https://www.shareicon.net/data/512x512/2016/07/08/117548_google_512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Android":
+          retval.push(
+            <Img
+              src="https://images.vexels.com/media/users/3/139556/isolated/preview/1718a076e29822051df8bcf8b5ce1124-android-logo-by-vexels.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Java":
+          retval.push(
+            <Img
+              src="https://d1q6f0aelx0por.cloudfront.net/product-logos/191bf3e6-f5e5-4430-abb9-2294aa3bb728-java-logo-512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "MySQL":
+          retval.push(
+            <Img
+              src="https://www.seeklogo.net/wp-content/uploads/2017/05/mysql-logo.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "PHP":
+          retval.push(
+            <Img
+              src="https://www.icoldo.com/wordpress/wp-content/uploads/2015/03/php.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Bootstrap":
+          retval.push(
+            <Img
+              src="https://cdn.iconscout.com/public/images/icon/free/png-512/bootstrap-logo-brand-development-tools-3af54ac4f4700735-512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        case "Python":
+          retval.push(
+            <Img
+              src="https://cdn.iconscout.com/public/images/icon/free/png-512/python-logo-31578242a9b4f4ae-512x512.png"
+              style={{ maxWidth: "10%", marginLeft: "1em" }}
+            />
+          );
+          break;
+        // case "Scikit Learn":
+        //   retval.push(
+        //     <Img
+        //       src="https://cdn.iconscout.com/public/images/icon/free/png-512/python-logo-31578242a9b4f4ae-512x512.png"
+        //       style={{ maxWidth: "10%" }}
+        //     />
+        //   );
+        //   break;
+        default:
+          null;
+      }
+    }
+    return retval;
   };
 
   render() {
-    let { project, classes } = this.props;
+    let { project, classes, fullScreen } = this.props;
 
     return (
       <div>
@@ -80,7 +243,7 @@ class ProjectTile extends Component {
           <CardContent style={{ overflowY: "hidden" }}>
             <Typography component="p" align="justify">
               {project.description.length >= 100
-                ? project.description.substr(0, 97) + "..."
+                ? project.description.substr(0, 90) + "..."
                 : project.description}
             </Typography>
           </CardContent>
@@ -111,8 +274,51 @@ class ProjectTile extends Component {
                 <Code />
               </IconButton>
             ) : null}
+            <IconButton
+              aria-label="Open"
+              className={classes.open}
+              onClick={this.handleClickOpen}
+            >
+              <OpenIcon style={{ fill: "black" }} />
+            </IconButton>
           </CardActions>
         </Card>
+        <Dialog
+          fullScreen={fullScreen}
+          open={this.open}
+          onClose={this.handleClose}
+          aria-labelledby={project.name}
+          TransitionComponent={Transition}
+        >
+          <AppBar className={classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                onClick={this.handleClose}
+                aria-label="Close"
+              >
+                <CloseIcon />
+              </IconButton>
+              <Typography
+                variant="title"
+                color="inherit"
+                className={classes.flex}
+              >
+                {project.name}
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <DialogContent style={{ marginTop: "1em" }}>
+            <Img src={project.images[0]} style={{ maxWidth: "100%" }} />
+            <Typography variant="subheading" color="inherit" align="justify">
+              {project.description}
+            </Typography>
+            {/* <Typography variant="subheading" color="inherit" align="justify">
+              Technologies used:<br />
+            </Typography> */}
+            <div style={{ marginTop: "1em" }}>{this.displayTech()}</div>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
@@ -123,4 +329,6 @@ ProjectTile.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(ProjectTile);
+export default withMobileDialog()(
+  withStyles(styles, { withTheme: true })(ProjectTile)
+);

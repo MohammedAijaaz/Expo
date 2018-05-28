@@ -12,7 +12,7 @@ import withMobileDialog from "@material-ui/core/withMobileDialog";
 import { observable } from "mobx";
 import { observer } from "mobx-react";
 import Slide from "@material-ui/core/Slide";
-import { Document, Page } from "react-pdf";
+import { Document, Page } from "react-pdf/dist/entry.webpack";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CardActions from "@material-ui/core/CardActions";

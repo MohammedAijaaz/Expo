@@ -14,7 +14,8 @@ class ProjectStore {
         "Learning made interactive by letting users intutively interact with the environment to learn in a Mixed Reality space",
         "April 14, 2018",
         "",
-        ""
+        "",
+        ["C#", "Unity", "Blender"]
       )
     );
     this.projects.push(
@@ -27,7 +28,7 @@ class ProjectStore {
         "December 30, 2017",
         "https://mohammedaijaaz.surge.sh/",
         "",
-        ""
+        ["React", "HTML", "CSS", "JS", "NodeJs", "Firebase"]
       )
     );
     this.projects.push(
@@ -39,7 +40,8 @@ class ProjectStore {
         "A bus tracking application for my college CBIT, where the driver has a app for starting the tracking process and the students have an application which shows a list of active buses and their respective real time locations.",
         "March 14, 2015",
         "https://cbit-buses.firebaseapp.com/",
-        "https://github.com/MohammedAijaaz/CBITTransportWeb"
+        "https://github.com/MohammedAijaaz/CBITTransportWeb",
+        ["Android", "Firebase", "Java", "HTML", "CSS", "JS"]
       )
     );
     this.projects.push(
@@ -51,7 +53,8 @@ class ProjectStore {
         'The "Goto app" for all the needs of students of CBIT, including Attendance, Syllabus, Important Contacts, Map etc',
         "January 6, 2015",
         "https://play.google.com/store/apps/details?id=com.mycbit.mdaij.cbit",
-        ""
+        "",
+        ["Android", "Firebase", "Java"]
       )
     );
     this.projects.push(
@@ -63,7 +66,8 @@ class ProjectStore {
         "A simple blog for an Author with a portal for posting new blogs and viewing analytics",
         "April 14, 2018",
         "https://blog-caf8e.firebaseapp.com/",
-        "https://github.com/MohammedAijaaz/blog"
+        "https://github.com/MohammedAijaaz/blog",
+        ["React", "Firebase", "HTML", "CSS", "JS"]
       )
     );
     this.projects.push(
@@ -75,7 +79,8 @@ class ProjectStore {
         "The webapp showcases the articles from the backend and provides information about the club, it’s functions and board members.",
         "August 10, 2016",
         "",
-        "https://github.com/MohammedAijaaz/celertias"
+        "https://github.com/MohammedAijaaz/celertias",
+        ["Firebase", "HTML", "CSS", "Javascript"]
       )
     );
     this.projects.push(
@@ -87,7 +92,8 @@ class ProjectStore {
         "The app has event registration, event details like the location of the event within the campus is shown on a map, timings, cost etc.",
         "January 15, 2016",
         "",
-        "https://github.com/MohammedAijaaz/Carpediem"
+        "https://github.com/MohammedAijaaz/Carpediem",
+        ["Android", "Firebase", "Java"]
       )
     );
     this.projects.push(
@@ -99,7 +105,8 @@ class ProjectStore {
         "Students/Visitors can get complete information about the event and they can also attempt the first round of the event. The questions are queried from the database in random order and the user information is collected.",
         "August 14, 2015",
         "http://cbitcstar2016.orgfree.com/",
-        ""
+        "",
+        ["MySQL", "PHP", "HTML", "CSS", "JS", "Bootstrap"]
       )
     );
     this.projects.push(
@@ -111,7 +118,8 @@ class ProjectStore {
         "This program, takes the outcome of a test as input and clusters students based on their performances. It is very useful for the institutions and students to understand where they need to focus. Is gives details about, the subject, chapter, topic, sub-topic in which the student’s performance can be improved.",
         "July 18, 2016",
         "",
-        ""
+        "",
+        ["Python", "Scikit Learn"]
       )
     );
     this.projects.push(
@@ -123,7 +131,8 @@ class ProjectStore {
         "Video tutorials play a very crucial role in today’s education. This can be more effective if the videos are interactive. In this project, when the viewer finishes watching a segment of the video, the viewer is asked questions if he/she understood if yes it will give a practice question else it will ask the viewer to watch it again.",
         "September 28, 2016",
         "",
-        "https://github.com/MohammedAijaaz/videotutorials"
+        "https://github.com/MohammedAijaaz/videotutorials",
+        ["HTML", "CSS", "Javascript"]
       )
     );
     this.projects.push(
@@ -135,7 +144,8 @@ class ProjectStore {
         "This application provides user sign up, login, administrator privileges and also simulates money with drawl and deposits.",
         "October 2, 2016",
         "",
-        "https://github.com/MohammedAijaaz/Bank-App"
+        "https://github.com/MohammedAijaaz/Bank-App",
+        ["Java"]
       )
     );
   }
