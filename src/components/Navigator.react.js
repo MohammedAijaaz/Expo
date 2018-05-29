@@ -20,6 +20,8 @@ import Home from "../views/Home.react";
 import NotFound from "../views/NotFound.react";
 import About from "../views/About.react";
 import PaperIcon from "@material-ui/icons/Note";
+// import MdClose from "@material-ui/icons/Close";
+// import MdAdd from "@material-ui/icons/Add";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import Avatar from "@material-ui/core/Avatar";
 import MenuList from "@material-ui/core/MenuList";
@@ -28,10 +30,22 @@ import Papers from "../views/Papers.react";
 import Contact from "../views/Contact.react";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import "./compstyles.css";
+// import {
+//   FloatingMenu,
+//   MainButton,
+//   ChildButton
+// } from "react-floating-button-menu";
+import Snackbar from "@material-ui/core/Snackbar";
+import Slide from "@material-ui/core/Slide";
+import CloseIcon from "@material-ui/icons/Close";
 
 const drawerWidth = 300;
 
 const styles = theme => ({
+  close: {
+    width: theme.spacing.unit * 4,
+    height: theme.spacing.unit * 4
+  },
   root: {
     flexGrow: 1,
     // zIndex: 1,
@@ -78,9 +92,14 @@ const styles = theme => ({
   // }
 });
 
+function TransitionRight(props) {
+  return <Slide {...props} direction="right" />;
+}
+
 @observer
 class Navigator extends Component {
   @observable open = false;
+  @observable showSnack = false;
   @observable selectedIndex = 0;
   // @observable anchorEl = null;
 
@@ -135,6 +154,7 @@ class Navigator extends Component {
       default:
         this.selectedIndex = 0;
     }
+    this.showSnack = true;
   }
 
   componentDidUpdate(x, y) {
@@ -157,6 +177,10 @@ class Navigator extends Component {
         this.selectedIndex = 0;
     }
   }
+
+  handleCloseSnack = () => {
+    this.showSnack = false;
+  };
 
   render() {
     const { classes, theme } = this.props;
@@ -310,6 +334,31 @@ class Navigator extends Component {
             }}
           />
           <div className={classes.toolbar} />
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left"
+            }}
+            open={this.showSnack}
+            autoHideDuration={5000}
+            onClose={this.handleCloseSnack}
+            ContentProps={{
+              "aria-describedby": "message-id"
+            }}
+            TransitionComponent={TransitionRight}
+            message={<span id="message-id">Hey there! Welcome to my Expo</span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.handleCloseSnack}
+              >
+                <CloseIcon />
+              </IconButton>
+            ]}
+          />
           <Switch>
             <Route path="/Home" component={Home} />
             <Route path="/Papers" component={Papers} />
