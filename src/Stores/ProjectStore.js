@@ -3,6 +3,7 @@ import Project from "./Project";
 
 class ProjectStore {
   @observable projects = [];
+  @observable count = null;
 
   constructor() {
     this.projects.push(

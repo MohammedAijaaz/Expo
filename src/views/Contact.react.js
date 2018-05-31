@@ -7,6 +7,9 @@ import Avatar from "@material-ui/core/Avatar";
 import Social from "../components/social.react";
 import "../components/compstyles.css";
 import { Grow } from "@material-ui/core";
+import ProjectStore from "../Stores/ProjectStore";
+import { observer } from "mobx-react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = theme => ({
   content: {
@@ -19,6 +22,7 @@ const styles = theme => ({
   }
 });
 
+@observer
 class Contact extends Component {
   render() {
     let { classes } = this.props;
@@ -52,6 +56,15 @@ class Contact extends Component {
               Mohammed Aijaaz<br />
             </Typography>
             <Social />
+            <Typography variant="display1" style={{ margin: "1em" }}>
+              Visits:{" "}
+              {!ProjectStore.count ? (
+                <CircularProgress size={40} style={{ position: "absolute" }} />
+              ) : (
+                ProjectStore.count
+              )}
+              <br />
+            </Typography>
           </div>
         </Paper>
       </center>

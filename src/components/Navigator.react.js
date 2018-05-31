@@ -38,6 +38,8 @@ import "./compstyles.css";
 import Snackbar from "@material-ui/core/Snackbar";
 import Slide from "@material-ui/core/Slide";
 import CloseIcon from "@material-ui/icons/Close";
+import firebase from "firebase";
+import ProjectStore from "../Stores/ProjectStore";
 
 const drawerWidth = 300;
 
@@ -105,7 +107,27 @@ class Navigator extends Component {
 
   componentWillMount() {
     if (this.props.history.location.pathname === "/") this.openProjects();
+    firebase
+      .database()
+      .ref("count")
+      .on("value", snapshot => {
+        ProjectStore.count = snapshot.val();
+      });
   }
+
+  updateCount = () => {
+    firebase
+      .database()
+      .ref("count")
+      .once("value", snapshot => {
+        let currentCount = snapshot.val();
+        currentCount++;
+        firebase
+          .database()
+          .ref("count")
+          .set(currentCount);
+      });
+  };
 
   handleDrawerToggle = () => {
     this.open = !this.open;
@@ -155,6 +177,7 @@ class Navigator extends Component {
         this.selectedIndex = 0;
     }
     this.showSnack = true;
+    this.updateCount();
   }
 
   componentDidUpdate(x, y) {

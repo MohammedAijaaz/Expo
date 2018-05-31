@@ -5,6 +5,7 @@ import registerServiceWorker from "./registerServiceWorker";
 // import Router from "react-router";
 import Routes from "./routes/index";
 import { BrowserRouter } from "react-router-dom";
+import "./firebaseconfig";
 
 ReactDOM.render(
   <BrowserRouter>
